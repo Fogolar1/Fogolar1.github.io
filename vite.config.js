@@ -1,18 +1,13 @@
-// Plugins
 import vue from '@vitejs/plugin-vue'
 import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
-
-// Utilities
 import { defineConfig } from 'vite'
 import { fileURLToPath, URL } from 'node:url'
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     vue({ 
       template: { transformAssetUrls }
     }),
-    // https://github.com/vuetifyjs/vuetify-loader/tree/next/packages/vite-plugin
     vuetify({
       autoImport: true,
     }),
@@ -35,4 +30,12 @@ export default defineConfig({
   server: {
     port: 3000,
   },
+  build: {
+    target: 'esnext',  // ou 'modules' para garantir ES Module moderno
+    rollupOptions: {
+      output: {
+        manualChunks: undefined,  // força empacotamento em um arquivo único, evita dividir em vários chunks
+      }
+    }
+  }
 })
