@@ -31,12 +31,4 @@ export default defineConfig({
   server: {
     port: 3000,
   },
-  build: {
-    target: 'esnext',  // ou 'modules' para garantir ES Module moderno
-    rollupOptions: {
-      output: {
-        manualChunks: undefined,  // força empacotamento em um arquivo único, evita dividir em vários chunks
-      }
-    }
-  }
 })
