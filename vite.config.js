@@ -1,10 +1,14 @@
+// Plugins
 import vue from '@vitejs/plugin-vue'
 import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
+
+// Utilities
 import { defineConfig } from 'vite'
 import { fileURLToPath, URL } from 'node:url'
 
+// https://vitejs.dev/config/
 export default defineConfig({
-  base: '/fogolar1.github.io/',
+  base: '/', // 👈 Importante! Se for user page (fogolar1.github.io), deixe "/"
   plugins: [
     vue({ 
       template: { transformAssetUrls }
