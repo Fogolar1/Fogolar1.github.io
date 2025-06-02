@@ -1,11 +1,13 @@
 <template>
   <div class="main">
     <div class="center" v-if="click">
-      <v-btn variant="plain" style="background-color: transparent; box-shadow: none; color: transparent;" v-on:click="clicked()">
-          <img src="../assets/images/kit_60_bolinhas_de_beach_tennis_jaya_107_3_750a80870191258723a32803661da44d-removebg-preview.png" />
-        </v-btn
-      >
+      <v-btn variant="plain"
+             style="background-color: transparent; box-shadow: none; color: transparent;"
+             @click="clicked">
+        <img src="../assets/images/bolinha.png" />
+      </v-btn>
     </div>
+
     <div v-else>
       <v-container class="falling-balls" fluid>
         <div
@@ -15,42 +17,40 @@
           :style="{
             left: n.left + '%',
             animationDuration: n.duration + 's',
-            animationDelay: n.delay + 's',
-            backgroundColor: n.color,
+            animationDelay: n.delay + 's'
           }"
         >
-            <img
-            src="../assets/images/kit_60_bolinhas_de_beach_tennis_jaya_107_3_750a80870191258723a32803661da44d-removebg-preview.png"
+          <img
+            src="../assets/images/bolinha.png"
             alt="bolinha"
             class="ball-image"
           />
         </div>
 
-        <v-container style="height: 100vh; padding-left: 70%;">
-          <v-avatar
-            size="200"
-            class="bolinha"
-            color="#d9851e"
-          >
-          <span style="font-size: 60px;">13/06</span>
-        </v-avatar>
+        <v-container class="data-container">
+          <v-avatar size="200" class="bolinha" color="#d9851e">
+            <span class="data">13/06</span>
+          </v-avatar>
         </v-container>
 
         <div class="center">
-          <h1 style="font-size: 70px;" class="alfa-slab-one-regular">BEACH TENNIS</h1>
-          <h1 style="font-size: 70px; padding-left: 30px;" class="alfa-slab-one-regular">DA JÚLINHA</h1>
+          <h1 class="alfa-slab-one-regular">BEACH TENNIS</h1>
+          <h1 class="alfa-slab-one-regular">DA JÚLINHA</h1>
         </div>
-        <div class="info d-flex">
-         <h1 style="margin-right: 50px;">Local : ALOB</h1>
-         <h1>Horário : 19:30h</h1>
+
+        <div class="info">
+          <h1>Local: ALOB</h1>
+          <h1>Horário: 19:30h</h1>
         </div>
+
         <div class="traje">
           <h1>Traje Esportivo</h1>
         </div>
-        <div class="center d-flex" style="top : 80%;">
-          <img src="../assets/images/raquete.png" style="height: 350px;">
-          <h1 style="padding-top: 120px; width: 400px;">Aguardamos sua presença</h1>
-          <img src="../assets/images/raquete.png" style="height: 350px; transform: scale(-1, 1);">
+
+        <div class="center d-flex">
+          <img src="../assets/images/raquete.png" />
+          <h1 class="convite-texto">Aguardamos sua presença</h1>
+          <img src="../assets/images/raquete.png" style="transform: scale(-1, 1);" />
         </div>
       </v-container>
     </div>
@@ -64,53 +64,52 @@ const balls = ref(
   Array.from({ length: 30 }, (_, i) => ({
     id: i,
     left: Math.random() * 100,
-    duration: 3 + Math.random() * 3, 
-    delay: Math.random() * 5, 
+    duration: 3 + Math.random() * 3,
+    delay: Math.random() * 5
   }))
 )
 </script>
 
 <script>
 export default {
-  data: () => {
+  data() {
     return {
       click: true,
-    };
+    }
   },
   methods: {
     clicked() {
-      this.click = false;
-      this.animation = true;
-      setInterval(() => {
-        this.animation = false;
-        this.main = true;
-      }, 1000);
+      this.click = false
     },
-  },
-};
+  }
+}
 </script>
 
 <style>
-.center {
-  position: absolute;
-  top: 30%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+body, html, #app {
+  margin: 0;
+  padding: 0;
+  height: 100%;
 }
 
-.info{
-   position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.main {
+  background-color: #809ae0;
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  overflow-x: hidden;
 }
 
-.traje{
-   position: absolute;
-    top: 60%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+img {
+  max-width: 100%;
+  height: auto;
 }
+
+h1 {
+  font-size: clamp(24px, 5vw, 70px);
+  margin: 0;
+}
+
 
 .falling-balls {
   position: fixed;
@@ -119,7 +118,7 @@ export default {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  pointer-events: none; /* opcional: permite clicar nos elementos atrás */
+  pointer-events: none;
   z-index: 9999;
 }
 
@@ -135,7 +134,6 @@ export default {
   animation-iteration-count: infinite;
 }
 
-
 .ball-image {
   width: 100%;
   height: 100%;
@@ -148,11 +146,57 @@ export default {
   }
 }
 
-.main {
-  background-color: #809ae0;
-  width: 100%;
-  height: 100%;
-  color: #fff;
+.center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.center.d-flex {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.center.d-flex img {
+  height: clamp(150px, 20vw, 350px);
+}
+
+.convite-texto {
+  width: clamp(200px, 60vw, 400px);
+  padding-top: 50px;
+}
+
+
+.info, .traje {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.info h1, .traje h1 {
+  font-size: clamp(20px, 4vw, 40px);
+}
+
+.data-container {
+  position: fixed;
+  top: 50px;
+  left: 62%;
+  z-index: 1000;
+}
+
+.v-avatar {
+  width: clamp(120px, 20vw, 200px) !important;
+  height: clamp(120px, 20vw, 200px) !important;
+}
+
+.data {
+  font-size: clamp(30px, 5vw, 60px);
 }
 
 .alfa-slab-one-regular {
