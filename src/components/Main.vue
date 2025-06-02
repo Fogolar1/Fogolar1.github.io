@@ -185,8 +185,8 @@ h1 {
 
 .data-container {
   position: fixed;
-  top: 50px;
-  left: 62%;
+  top: -15px;
+  left: 68%;
   z-index: 1000;
 }
 
