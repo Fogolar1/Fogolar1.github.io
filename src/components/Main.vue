@@ -1,6 +1,7 @@
 <template>
   <div class="main">
     <div class="center" v-if="click">
+    <h1>Clique em mim</h1>
       <v-btn variant="plain"
              style="background-color: transparent; box-shadow: none; color: transparent;"
              @click="clicked">
