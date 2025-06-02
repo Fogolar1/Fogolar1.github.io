@@ -1,7 +1,7 @@
 <template>
   <div class="main">
     <div class="center" v-if="click">
-      <v-btn variant="plain" style="background-color: transparent; box-shadow: none; color: transparent;" @click="this.clicked()">
+      <v-btn variant="plain" style="background-color: transparent; box-shadow: none; color: transparent;" v-on:click="clicked()">
           <img src="../assets/images/kit_60_bolinhas_de_beach_tennis_jaya_107_3_750a80870191258723a32803661da44d-removebg-preview.png" />
         </v-btn
       >
@@ -75,8 +75,6 @@ export default {
   data: () => {
     return {
       click: true,
-      animation: false,
-      main: true,
     };
   },
   methods: {
